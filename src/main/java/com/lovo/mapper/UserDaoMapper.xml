@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.lovo.mapper.UserDao">
+	<resultMap type="userBean" id="userMap">
+		<id property="id" column="pk_user_id" />
+		<result property="userName" column="f_username" />
+		<result property="password" column="f_password" />
+	</resultMap>
+
+	<select id="getListUser" resultMap="userMap">
+		select * from t_user
+	</select>
+
+	<select id="getUserByUserId" resultMap="userMap">
+		select * from t_user where pk_user_id=#{id}
+	</select>
+	<select id="login" resultMap="userMap">
+	select * from t_user where f_username=#{param1} and f_password = #{param2}
+	</select>
+
+	<!-- <select id="getListUser" resultType="powerEntity" > select p.* from 
+		t_user u,t_userrole ur,t_role r,t_rolepower rp ,t_power p WHERE u.id=ur.userid 
+		AND ur.roleid=r.roleId and r.roleId=rp.roleid AND rp.powerid=p.powerId AND 
+		u.id=1 </select> -->
+
+
+
+</mapper>

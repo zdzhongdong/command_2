@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+
+<script type="text/javascript">
+
+
+		var websocket;
+		
+		if ('WebSocket' in window) {
+			websocket = new WebSocket("ws://127.0.0.1:8080/Command_2/ws.lovo");
+		} else if ('MozWebSocket' in window) {
+			websocket = new MozWebSocket("ws://127.0.0.1:8080/Command_2 Maven Webapp/ws.lovo");
+		} else {
+			websocket = new SockJS("http://127.0.0.1:8080/Command_2 Maven Webapp/ws/sockjs.lovo");
+		}
+		websocket.onopen = function(event) {
+			alert("WebSocket:已连接");
+
+		};
+		//接收服务器发送回来的消息
+		websocket.onmessage = function(event) {
+			  alert(event.data)
+		   $("#xxid").html(event.data);
+		
+		};
+		websocket.onerror = function(event) {
+			alert("WebSocket:发生错误 ");
+			alert(event);
+		};
+		/** websocket.onclose = function(event) {
+			alert("WebSocket:已关闭");
+			alert(event);
+		} **/
+		function sendMsg(){
+		websocket.send("我是前台");
+		}
+		</script>
+</head>
+<body>
+<div id="xxid"></div>
+sdddddddddddddddddd
+	<input type="button" value="发送" class="send" onclick="sendMsg()" >
+</body>
+</html>

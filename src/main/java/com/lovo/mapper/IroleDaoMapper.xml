@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+
+<mapper namespace="com.lovo.mapper.IRoleDao">
+
+
+  <select id="getListRole" parameterType="int" resultType="roleEntity" >
+  select r.* from t_user u , t_userrole ur ,t_role r
+  WHERE u.id=ur.userid AND ur.roleid=r.roleId AND u.id = #{id}
+  </select>
+  
+  <select id="getAllRole"  resultType="roleEntity" >
+  select * from t_role 
+ </select>
+  
+<!--   <select id="getListUser" resultType="powerEntity" >
+    select p.* from t_user u,t_userrole ur,t_role r,t_rolepower rp ,t_power  p 
+    WHERE u.id=ur.userid AND ur.roleid=r.roleId and r.roleId=rp.roleid 
+    AND rp.powerid=p.powerId AND u.id=1
+  </select> -->
+  
+
+  
+</mapper>
